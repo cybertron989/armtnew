@@ -1,0 +1,37 @@
+<!-- Modal -->
+<div class="modal fade" id="douModal" tabindex="-1" role="dialog" aria-labelledby="douModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="douModalLabel">DOU</h4>
+      </div>
+      <div class="modal-body">
+        <div>
+          <table id="douTable" class="display" cellspacing="0"">
+            <thead>
+              <tr>
+                <th>Dou Name</th>
+                <th>Team Name</th>                
+              </tr>
+            </thead>
+            <tbody>
+              <% dous.each do |dou| %>
+                <tr data-dou="<%= dou.name %>">
+                  <td><%= dou.name %></td>
+                  <td><%= dou.team_name %></td>                  
+                </tr>   
+              <% end %>             
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+      </div>
+    </div>
+  </div>
+</div>

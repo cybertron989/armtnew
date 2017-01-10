@@ -1,0 +1,22 @@
+<div class="container">
+  <div class="admin-dashboard">
+		<h2>Import Survey</h2>
+		<%= form_tag admin_surveys_path, multipart: true do %>
+			<div>
+				<% @survey_errors.present? && @survey_errors.each do |errors|%>
+				 <p>
+				   <strong>Row: <%= errors[:row]%></strong>
+				   <span>	<%= errors[:error_message].join("<br/>").html_safe%> </span>
+				 </p>
+				<% end %>
+		  </div>
+		  <div class="row" %>
+		    <%= file_field_tag :file, class: "file-upload-field" %>
+		    <%= submit_tag "Import", class: "btn btn-primary file-submit" %>
+			</div>
+		<% end %>
+	</div>	
+</div>
+<%= link_to "User Surveys", user_surveys_admin_surveys_path %>
+
+<!-- admin_surveys_path admin_dashboards_path -->

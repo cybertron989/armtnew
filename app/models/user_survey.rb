@@ -1,0 +1,2 @@
+class UserSurvey < ApplicationRecord
+end

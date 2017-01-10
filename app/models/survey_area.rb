@@ -1,0 +1,2 @@
+class SurveyArea < ApplicationRecord
+end

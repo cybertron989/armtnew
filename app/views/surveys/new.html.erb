@@ -1,0 +1,62 @@
+<div class="assessment-container container">
+	<div class="row">
+		<div class="col-md-12 form-box">
+		  <%= form_tag surveys_path, class: "registration-form", role: "form" do %>
+			<!-- <form role="form" class="registration-form" action="javascript:void(0);"> -->
+			  <% inc = 0 %>
+			  <% @surveys.each do |survey_area, survey| %>
+			    <%inc = inc +1 %>
+					<fieldset>
+						<div class="form-top">
+							<div class="form-top-left">
+								<h3><span><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span><%= survey_area %></h3>
+								<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit	</p> -->
+							</div>
+						</div>
+						<div class="form-bottom">
+						  <% survey.each do |key, schema_areas| %>
+							  <div class="row">
+							    <% split_key = key.split("$@") %>
+						      <legend>Do you want to retain your access for <%= split_key[0] %> <%= split_key[1] %>? </legend>
+							    <div class="form-check">
+							      <label class="form-check-label schema-area-radio">
+							        <% schema_areas.each do |schema_area| %>
+							          <p>
+								          <span><%= schema_area[:schema_area] %>: </span>
+								          <span>
+									          <input type="radio" class="form-check-input" name="surveys[<%= survey_area %>][survey_questions][<%= schema_area[:id]%>]" id="optionsRadios1" value="true"> Yes
+									          <input type="radio" class="form-check-input" name="surveys[<%= survey_area %>][survey_questions][<%= schema_area[:id]%>]" id="optionsRadios1" value="false"> No
+									        </span>
+							          </p>
+							        <% end %>
+							      </label>
+							    </div>
+							    								
+							  </div>
+							<% end %>
+							<div class= "row survey-dou dispnone">
+							  <label >DOU: </label>
+							  <%= link_to "Select a DOU", get_dous_surveys_path(survey_area: survey_area), class: "form-group col-md-4 col-sm-4 dou-div douSurveyArea", remote: true %>
+								<!-- <div  data-toggle="modal" data-target="#myModal"> -->
+
+                  
+								  <%#= select_tag "surveys[#{survey_area}][DOU]", options_for_select([ "VISA", "MasterCard" ]), prompt: "Select an option", class: "form-control " %>
+								<!-- </div> -->
+							  <%= hidden_field_tag "surveys[#{survey_area}][DOU]", nil , class: "form-control survey-dou-select" %> 
+							</div>
+							<div>
+								<% if @surveys.count != inc %>
+								  <button type="button" class="btn btn-next" disabled>Next</button>
+								<% else %>
+									<button type="button" class="btn btn-previous">Previous</button>
+	                <button type="submit" class="btn submit-survey-btn" disabled>Submit</button>
+	              <% end %>
+              </div>
+						</div>
+					</fieldset>						
+			  <% end %>
+			  <!-- </form> -->
+			<% end %>
+		</div>
+	</div>
+</div>

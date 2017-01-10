@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: MyString
+  survey_type: MyString
+  area: MyString
+  schema_area: MyString
+  environment: MyString
+  response: MyString
+  dou: MyString
+
+two:
+  user_id: MyString
+  survey_type: MyString
+  area: MyString
+  schema_area: MyString
+  environment: MyString
+  response: MyString
+  dou: MyString
