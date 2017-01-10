@@ -23,7 +23,7 @@ private
         user_survey.survey_type,
         user_survey.schema_area,
         user_survey.environment,
-        user_survey.response,
+        user_survey.response? ? "Yes" : "No",
         user_survey.dou,
         user_survey.created_at.strftime("%B %e, %Y")
       ]
@@ -37,6 +37,9 @@ private
   def fetch_user_surveys
     user_surveys = UserSurvey.order("#{sort_column} #{sort_direction}")
     user_surveys = user_surveys.page(page).per_page(per_page)
+    if params[:sSearch_1].present? || params[:sSearch_3].present? || params[:sSearch_4].present? 
+      user_surveys = user_surveys.survey_type_filter(params[:sSearch_1]).environment_filter(params[:sSearch_3]).survey_response_filter(params[:sSearch_4])
+    end
     if params[:sSearch].present?
       user_surveys = user_surveys.where("user_id like :search or dou like :search", search: "%#{params[:sSearch]}%")
     end

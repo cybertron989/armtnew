@@ -1,7 +1,7 @@
 $(document).on('turbolinks:load', function() {
 // setTimeout(function() {
 	$('#userSurveysDatatable').removeClass( 'display' ).addClass('table table-striped table-bordered');
-  $('#userSurveysDatatable').DataTable({
+  oTable = $('#userSurveysDatatable').DataTable({
         dom: 'Bfrtip',
         buttons: [  { extend: 'excelHtml5', text: "Export Excel", className: "btn btn-primary exportExcelBtn" } ]
     ,               "lengthChange":   false,
@@ -9,8 +9,15 @@ $(document).on('turbolinks:load', function() {
   	                      "bJQueryUI": true,
   	                      "bProcessing": true,
   	                       "bServerSide": true,
-    "sAjaxSource": $('#userSurveysDatatable').data('source')
-  	                    })
+                         "sAjaxSource": $('#userSurveysDatatable').data('source')
+  	                    });
+
+          $('#btnSurveyFilter').on('click', function () {
+            oTable.columns(1).search($('#surveyTypeSelect').val());
+            oTable.columns(3).search($('#surveyEnvSelect').val());
+            oTable.columns(4).search($('#surveyRspSelect').val());
+            oTable.draw();
+          });
 // }, 2000);
 });
 

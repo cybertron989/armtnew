@@ -9,9 +9,11 @@ class Survey < ApplicationRecord
   scope :active, -> { where(status: Survey.statuses[:active]) }
   
   after_update :save_user_survey, if: "self.survey_response.present?"
-
+   
+  SURVEY_ENVIRONMENT = ["Development", "Production", "Test" ]
+  
   attr_accessor :survey_response, :dou
-
+  
 	def self.import file
 		spreadsheet = Roo::Excelx.new(file.path)
 		surveys = []

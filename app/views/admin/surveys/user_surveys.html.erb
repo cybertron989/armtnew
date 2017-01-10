@@ -1,20 +1,33 @@
 <div class="container mrtop20">
-    <%= text_field_tag "name", "", id: "usagerFilter" %>
-    <table id="userSurveysDatatable" class="display" cellspacing="0" width="100%", data-source="<%= user_surveys_admin_surveys_url(format: "json") %>" >
-        <thead>
-            <tr>
-                <th>UserId</th>
-                <th>SurveyType</th>
-                <th>Schema Area</th>
-                <th>Environment</th>
-                <th>Response</th>
-                <th>DOU</th>
-                <th>Created At</th>
-            </tr>
-        </thead>
-        <tbody>
-                    
-        </tbody>
-    </table>
+  <div class="row usurvFilter">
+    <div class="col-md-3">
+      <%= select_tag "survey_type", options_for_select(SurveyType.pluck(:name)), prompt: "Select Survey Type", class: "form-control", id: "surveyTypeSelect" %>
+    </div>
+    <div class="col-md-3">
+      <%= select_tag "environment", options_for_select(Survey::SURVEY_ENVIRONMENT), prompt: "Select Environment", class: "form-control", id: "surveyEnvSelect" %>
+    </div>
+    <div class="col-md-3">
+      <%= select_tag "response", options_for_select([["Yes", true], ["No", false]]), prompt: "Select Response", class: "form-control", id: "surveyRspSelect" %>
+    </div>
+    <div class="col-md-3">
+      <%= submit_tag "Submit", id: "btnSurveyFilter", class: "btn btn-primary" %>
+    </div>
+  </div>
+  <table id="userSurveysDatatable" class="display" cellspacing="0" width="100%", data-source="<%= user_surveys_admin_surveys_url(format: "json") %>" >
+      <thead>
+          <tr>
+              <th>UserId</th>
+              <th>SurveyType</th>
+              <th>Schema Area</th>
+              <th>Environment</th>
+              <th>Response</th>
+              <th>DOU</th>
+              <th>Created At</th>
+          </tr>
+      </thead>
+      <tbody>
+                  
+      </tbody>
+  </table>
 
 </div>
