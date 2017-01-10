@@ -10,12 +10,7 @@ $(document).on('turbolinks:load', function() {
   	                      "bProcessing": true,
   	                       "bServerSide": true,
     "sAjaxSource": $('#userSurveysDatatable').data('source')
-  	                    }).columnFilter({aoColumns:[
-{ type:"input" },
-{ type:"input" },
-{ type:"input" },
-{ type:"select", values: ["val1", "val2"] }
-]});  
+  	                    })
 // }, 2000);
 });
 
