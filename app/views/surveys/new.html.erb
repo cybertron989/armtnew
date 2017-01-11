@@ -1,7 +1,7 @@
 <div class="assessment-container container">
 	<div class="row">
 		<div class="col-md-12 form-box">
-		  <%= if @surveys.present? %>
+		  <% if @surveys.present? %>
 			  <%= form_tag surveys_path, class: "registration-form", role: "form" do %>
 				<!-- <form role="form" class="registration-form" action="javascript:void(0);"> -->
 				  <% inc = 0 %>
