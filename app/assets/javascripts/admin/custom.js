@@ -19,26 +19,39 @@ $(document).on('turbolinks:load', function() {
             oTable.draw();
           });
 // }, 2000);
+  $(".datepick").datepicker();
+  $('#addNewReminder').on('click', function() {
+    var cloneInp = $(".reminderFirst").html();
+    cloneInp = '<span>'+cloneInp + '<a class="col-sm-2 removeNewReminder" href="javascript:void(0)">Remove</a>'+'</span>'
+    $(".datepick").datepicker('destroy');
+    $("#newReminderDiv").append(cloneInp)
+    $(".datepick").datepicker();
+    removeReminderInput();
+  });
+
+  $('#reminder-form').on('submit', function (e) {
+
+    $(this).find('input[type="text"],input[type="email"], textarea').each(function () {
+        if ($(this).val() == "") {
+            e.preventDefault();
+            $(this).addClass('input-error');
+        } else {
+            $(this).removeClass('input-error');
+        }
+    });
+  });
+
+  $('#reminder-form input, #reminder-form textarea').on('focusin', function(e){
+    if($(this).hasClass("input-error")){
+      $(this).removeClass("input-error")
+    }
+  })
+
 });
 
+function removeReminderInput(){
+   $(".removeNewReminder").on('click', function() {
+    $(this).parent().remove();
+  });
+}
 
-// $('#tabDetail').dataTable({
-// "bProcessing": true,
-// "bServerSide": true,
-// "sPaginationType": "full_numbers",
-// "sAjaxSource": "serverSide_general.php",
-// "fnServerData": function( sUrl, aoData, fnCallback ) {
-// $.ajax( {
-// "url": sUrl,
-// "data": aoData,
-// "success": fnCallback,
-// "dataType": "json",
-// "cache": false
-// } );
-// }
-// }).columnFilter({aoColumns:[
-// { type:"input", sSelector: "#usagerFilter"  },
-// { type:"input" },
-// { type:"input" },
-// { type:"select", values: ["val1", "val2"] }
-// ]});

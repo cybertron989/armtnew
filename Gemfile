@@ -40,6 +40,8 @@ gem 'ruby-saml', '~> 1.0.0'
 gem 'roo', '~> 2.7'
 gem 'will_paginate', '~> 3.1.0'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
+gem 'sidekiq', '~> 4.2', '>= 4.2.8'
+gem 'bootstrap-datepicker-rails', '~> 1.6', '>= 1.6.4.1'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

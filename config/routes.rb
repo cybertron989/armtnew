@@ -5,6 +5,8 @@ Rails.application.routes.draw do
     resources :surveys do
     	collection do
     	  get "user_surveys"
+        get "email_notification"
+        post "set_email_notifications"
     	end
     end
   end

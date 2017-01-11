@@ -68,14 +68,7 @@ function showSurveyDOU(){
 
   });
   
-  // $(".registration-form fieldset:visible select.survey-dou-select").on('change', function(){
-  //   if($(this).val() == ""){
-  //     toggleBtnState(true);
-  //   }
-  //   else{
-  //     toggleBtnState(false);
-  //   }
-  // });
+
 }
 
 function toggleBtnState(state){

@@ -59,12 +59,13 @@ class Survey < ApplicationRecord
 
 	def save_user_survey
 	  user_survey = UserSurvey.new(user_id: self.user_id, 
-                                 survey_type: self.survey_type,
+                                 survey_type: self.survey_type.try(:capitalize),
                                  area: self.area,
-                                 schema_area: self.schema_area,
-                                 environment: self.environment,
+                                 schema_area: self.schema_area.try(:upcase),
+                                 environment: self.environment.try(:capitalize),
                                  response: self.survey_response,
                                  dou: self.dou)
 	  user_survey.save!
 	end
+
 end
