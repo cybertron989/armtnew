@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 	resources :surveys do
     collection do
       get "get_dous"
+      get "completed_page"
     end
   end
 	root "home#index"

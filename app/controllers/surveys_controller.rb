@@ -15,8 +15,8 @@ class SurveysController < ApplicationController
         survey.dou = user_survey[:DOU] #if response == "true"      
   			survey.save
       end
-  	end
-  	
+    end
+    redirect_to completed_page_surveys_path  	
   end
 
   def get_dous

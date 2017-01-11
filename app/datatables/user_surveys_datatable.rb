@@ -35,7 +35,7 @@ private
   end
 
   def fetch_user_surveys
-    user_surveys = UserSurvey.order("#{sort_column} #{sort_direction}")
+    user_surveys = UserSurvey.where(area: params[:area]||"Customer ODS").order("#{sort_column} #{sort_direction}")
     user_surveys = user_surveys.page(page).per_page(per_page)
     if params[:sSearch_1].present? || params[:sSearch_3].present? || params[:sSearch_4].present? 
       user_surveys = user_surveys.survey_type_filter(params[:sSearch_1]).environment_filter(params[:sSearch_3]).survey_response_filter(params[:sSearch_4])
