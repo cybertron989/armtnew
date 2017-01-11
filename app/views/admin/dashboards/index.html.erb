@@ -2,14 +2,26 @@
   <div class="admin-dashboard">
 		<h2>Import Survey</h2>
 		<%= form_tag admin_surveys_path, multipart: true do %>
-			<div>
-				<% @survey_errors.present? && @survey_errors.each do |errors|%>
-				 <p>
-				   <strong>Row: <%= errors[:row]%></strong>
-				   <span>	<%= errors[:error_message].join("<br/>").html_safe%> </span>
-				 </p>
-				<% end %>
-		  </div>
+		  <% if  @survey_errors.present? %>
+				<div class="col-md-12 error-msg-tb">
+				  <table class="table table-bordered">
+					  <thead>
+				      <tr>
+							  <th>Row</th>
+							  <th>Message</th>
+							</tr>
+						</thead>
+						<tbody>
+					  <% @survey_errors.each do |errors|%>
+					    <tr>
+						    <td><strong><%= errors[:row]%></strong></td>
+						    <td><span>	<%= errors[:error_message].join("<br/>").html_safe%> </span></td>
+						  </tr>
+						<% end %>
+						</tbody>
+				  </table>
+			  </div>
+		  <% end %>
 		  <div class="row" %>
 		    <%= file_field_tag :file, class: "file-upload-field" %>
 		    <%= submit_tag "Import", class: "btn btn-primary file-submit" %>

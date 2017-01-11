@@ -21,10 +21,10 @@ class Survey < ApplicationRecord
 		  spreadsheet.each_row_streaming(offset: 1).each do |row|
 		    if row[0].present? && row[1].present?
 		      survey = Survey.new(user_id: row[0].try(:value), 
-		     	                    survey_type: row[1].try(:value),
+		     	                    survey_type: row[1].try(:value).try(:capitalize),
 		     	                    area: row[2].try(:value), 
-		     	                    schema_area: row[3].try(:value), 
-		     	                    environment: row[4].try(:value), 
+		     	                    schema_area: row[3].try(:value).try(:upcase), 
+		     	                    environment: row[4].try(:value).try(:capitalize), 
 		     	                    status:  Survey.statuses[:active]
 		     	                  )
 		      surveys << survey
@@ -59,10 +59,10 @@ class Survey < ApplicationRecord
 
 	def save_user_survey
 	  user_survey = UserSurvey.new(user_id: self.user_id, 
-                                 survey_type: self.survey_type.try(:capitalize),
+                                 survey_type: self.survey_type,
                                  area: self.area,
-                                 schema_area: self.schema_area.try(:upcase),
-                                 environment: self.environment.try(:capitalize),
+                                 schema_area: self.schema_area,
+                                 environment: self.environment,
                                  response: self.survey_response,
                                  dou: self.dou)
 	  user_survey.save!
