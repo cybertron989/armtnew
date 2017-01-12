@@ -18,25 +18,26 @@ class Survey < ApplicationRecord
 		spreadsheet = Roo::Excelx.new(file.path)
 		surveys = []
 		survey_errors = []
-		  spreadsheet.each_row_streaming(offset: 1).each do |row|
-		    if row[0].present? && row[1].present?
-		      survey = Survey.new(user_id: row[0].try(:value), 
-		     	                    survey_type: row[1].try(:value),
-		     	                    area: row[2].try(:value), 
-		     	                    schema_area: row[3].try(:value).try(:upcase), 
-		     	                    environment: row[4].try(:value).try(:capitalize), 
-		     	                    status:  Survey.statuses[:active]
-		     	                  )
-		      surveys << survey
-		      survey_errors << {row: row[0].coordinate.row, error_message: survey.errors.full_messages} unless survey.valid?
-		    end
-		  end
-		  if survey_errors.blank?
-		  	surveys.each do |survey|
-		  		survey.save
-		  	end		   
-		  end
-		  return survey_errors, "Invalid File"
+	  (2..spreadsheet.last_row).each do |i|
+	  	row= spreadsheet.row(i)
+	    if row[0].present? && row[1].present?
+	      survey = Survey.new(user_id: row[0], 
+	     	                    survey_type: row[1],
+	     	                    area: row[2], 
+	     	                    schema_area: row[3].try(:upcase), 
+	     	                    environment: row[4].try(:capitalize), 
+	     	                    status:  Survey.statuses[:active]
+	     	                  )
+	      surveys << survey
+	      survey_errors << {row: i, error_message: survey.errors.full_messages} unless survey.valid?
+	    end
+	  end
+	  if survey_errors.blank?
+	  	surveys.each do |survey|
+	  		survey.save
+	  	end		   
+	  end
+	  return survey_errors, "Invalid File"
 	end
 
 	def self.records id
