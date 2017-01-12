@@ -14,6 +14,10 @@ class UserSurveysDatatable
     }
   end
 
+  def as_excel(options = {})
+    data
+  end
+
 private
 
   def data
@@ -36,7 +40,7 @@ private
 
   def fetch_user_surveys
     user_surveys = UserSurvey.where(area: params[:area]||"Customer ODS").order("#{sort_column} #{sort_direction}")
-    user_surveys = user_surveys.page(page).per_page(per_page)
+    user_surveys = user_surveys.page(page).per_page(per_page) if params[:iDisplayLength] != 'All'
     if params[:sSearch_1].present? || params[:sSearch_3].present? || params[:sSearch_4].present? 
       user_surveys = user_surveys.survey_type_filter(params[:sSearch_1]).environment_filter(params[:sSearch_3]).survey_response_filter(params[:sSearch_4])
     end
@@ -55,7 +59,7 @@ private
   end
 
   def sort_column
-    columns = %w[user_id survey_type schema_area environment response dou created_at]
+    columns = UserSurvey::TableColumn
     columns[params[:iSortCol_0].to_i]
   end
 

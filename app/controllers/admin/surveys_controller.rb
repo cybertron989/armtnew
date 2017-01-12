@@ -38,5 +38,15 @@ class Admin::SurveysController < AdminController
     redirect_to email_notification_admin_surveys_path, :flash => { :success => I18n.t(:success_email_notification) }
 	end
 
+	def export_excel
+		user_surveys = UserSurveysDatatable.new(view_context) 
+		@data =  user_surveys.as_excel
+	  respond_to do |format| 
+	  	format.xlsx {
+		    response.headers['Content-Disposition'] = 'attachment; filename="armt_survey.xlsx"'
+		  }
+    end
+	end
+
 
 end

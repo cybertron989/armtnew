@@ -4,7 +4,8 @@ Rails.application.routes.draw do
     get 'dashboards' => "dashboards#index"
     resources :surveys do
     	collection do
-    	  get "user_surveys"
+        get "user_surveys"
+    	  get "export_excel"
         get "email_notification"
         post "set_email_notifications"
     	end

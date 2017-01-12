@@ -2,7 +2,7 @@ class Survey < ApplicationRecord
   
   enum status: [ :active, :completed, :archived, :deleted ]
   validates :user_id, :survey_type, :area, :schema_area, presence: true
-  validates_uniqueness_of :user_id, scope: [:user_id, :survey_type, :area, :schema_area, :environment]
+  validates_uniqueness_of :user_id, scope: [:user_id, :survey_type, :area, :schema_area, :environment, :status]
   validates :survey_type, inclusion: { in: SurveyType.pluck(:name),   message: "%{value} is not a valid type" }
   validates :area, inclusion: { in: SurveyArea.pluck(:name),   message: "%{value} is not a valid area" }
 
@@ -21,7 +21,7 @@ class Survey < ApplicationRecord
 		  spreadsheet.each_row_streaming(offset: 1).each do |row|
 		    if row[0].present? && row[1].present?
 		      survey = Survey.new(user_id: row[0].try(:value), 
-		     	                    survey_type: row[1].try(:value).try(:capitalize),
+		     	                    survey_type: row[1].try(:value),
 		     	                    area: row[2].try(:value), 
 		     	                    schema_area: row[3].try(:value).try(:upcase), 
 		     	                    environment: row[4].try(:value).try(:capitalize), 

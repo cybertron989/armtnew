@@ -49,7 +49,9 @@
 									<% if @surveys.count != inc %>
 									  <button type="button" class="btn btn-next" disabled>Next</button>
 									<% else %>
-										<button type="button" class="btn btn-previous">Previous</button>
+									  <% if @surveys.count > 1 %>
+										  <button type="button" class="btn btn-previous">Previous</button>
+										<% end %>
 		                <button type="submit" class="btn submit-survey-btn" disabled>Submit</button>
 		              <% end %>
 	              </div>

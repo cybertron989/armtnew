@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(:name => "ARMT") do |sheet|
+sheet.add_row  UserSurvey::TableColumnShow
+	@data.each do |record|
+	  sheet.add_row record
+	end
+end

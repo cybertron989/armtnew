@@ -3,7 +3,7 @@ class SurveysController < ApplicationController
   end
 
   def new
-  	@surveys = Survey.records "C225202"
+  	@surveys = Survey.records params[:user_id] || "C225202"
   end
 
   def create
