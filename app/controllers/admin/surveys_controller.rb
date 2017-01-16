@@ -33,7 +33,7 @@ class Admin::SurveysController < AdminController
 					      		"Re: #{params[:subject]}"
 					      end
 
-      SurveyNotificationWorker.perform_in(duration, subject, params[:body])
+      # SurveyNotificationWorker.perform_in(duration, subject, params[:body])
 	  end
     redirect_to email_notification_admin_surveys_path, :flash => { :success => I18n.t(:success_email_notification) }
 	end
