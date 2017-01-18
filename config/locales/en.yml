@@ -23,3 +23,4 @@ en:
   hello: "Hello world"
   success_upload_file: "File has been successfully uploaded"
   success_email_notification: "Email notification has been successfully scheduled"
+  invalid_file_upload: "You have uploaded an invalid file."

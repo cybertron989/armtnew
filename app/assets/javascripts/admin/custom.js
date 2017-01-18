@@ -32,7 +32,7 @@ $(document).on('turbolinks:load', function() {
 // }, 2000);
 
 
-  $(".datepick").datepicker();
+  $(".datepick").datepicker({startDate: new Date});
 
   $('#addNewReminder').on('click', function() {
     var cloneInp = $(".reminderFirst").html();
@@ -40,7 +40,7 @@ $(document).on('turbolinks:load', function() {
     // cloneInp = '<span>'+cloneInp + '<a class="col-sm-2 removeNewReminder" href="javascript:void(0)">Remove</a>'+'</span>'
     $(".datepick").datepicker('destroy');
     $("#newReminderDiv").append(cloneInp)
-    $(".datepick").datepicker();
+    $(".datepick").datepicker({startDate: new Date});
     removeReminderInput();
   });
 

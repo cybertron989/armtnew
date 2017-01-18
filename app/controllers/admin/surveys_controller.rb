@@ -2,12 +2,16 @@ class Admin::SurveysController < AdminController
 
 
 	def create
-		@survey_errors, msg = Survey.import(params[:file])
-		if @survey_errors.blank?		  	
-	    redirect_to admin_dashboards_path, :flash => { :success => I18n.t(:success_upload_file) }
-	  else
-	  	render "admin/dashboards/index"
-	  end
+		if params[:file].present? && File.extname(params[:file].path) == ".xlsx"
+			@survey_errors, msg = Survey.import(params[:file])
+			if @survey_errors.blank?		  	
+		    redirect_to admin_dashboards_path, :flash => { :success => I18n.t(:success_upload_file) }
+		  else
+		  	render "admin/dashboards/index"
+		  end
+		else
+			redirect_to admin_dashboards_path, :flash => { :error => I18n.t(:invalid_file_upload) }
+		end
 	end
 
 	def user_surveys
