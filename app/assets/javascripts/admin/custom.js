@@ -26,7 +26,7 @@ $(document).on('turbolinks:load', function() {
     sSearch_1 = oTable.columns(1).search()[0]
     sSearch_3 = oTable.columns(3).search()[0]
     sSearch_4 = oTable.columns(4).search()[0]
-    url="/admin/surveys/export_excel.xlsx?iSortCol_0="+iSortCol_0+"&sSortDir_0="+sSortDir_0+"&sSearch="+sSearch+"&sSearch_1="+sSearch_1+"&sSearch_3="+sSearch_3+"&sSearch_4="+sSearch_4+"&iDisplayLength=All"
+    url = "/admin/surveys/export_excel.xlsx?iSortCol_0="+iSortCol_0+"&sSortDir_0="+sSortDir_0+"&sSearch="+sSearch+"&sSearch_1="+sSearch_1+"&sSearch_3="+sSearch_3+"&sSearch_4="+sSearch_4+"&iDisplayLength=All"
     window.location = url
   });
 // }, 2000);
@@ -36,7 +36,8 @@ $(document).on('turbolinks:load', function() {
 
   $('#addNewReminder').on('click', function() {
     var cloneInp = $(".reminderFirst").html();
-    cloneInp = '<span>'+cloneInp + '<a class="col-sm-2 removeNewReminder" href="javascript:void(0)">Remove</a>'+'</span>'
+    cloneInp = "<div class='col-sm-12'><span class='col-sm-6'>" + cloneInp + '</span><a class="col-sm-3 removeNewReminder" href="javascript:void(0)"><span class="glyphicon glyphicon-trash"></span>Remove</a></div>'
+    // cloneInp = '<span>'+cloneInp + '<a class="col-sm-2 removeNewReminder" href="javascript:void(0)">Remove</a>'+'</span>'
     $(".datepick").datepicker('destroy');
     $("#newReminderDiv").append(cloneInp)
     $(".datepick").datepicker();

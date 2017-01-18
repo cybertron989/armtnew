@@ -1,7 +1,9 @@
-<div class="container">
-  <div class="admin-dashboard">
-		<h2>Import Survey</h2>
-		<%= form_tag admin_surveys_path, multipart: true do %>
+<div  class="container">
+	<%= render "shared/heading" %>
+  <div class="tiles borderdevider">
+    <div class="circle"> <span class="glyphicon glyphicon-import iconglyphicon" aria-hidden="true"></span></div>
+    <h3>Import Survey</h3>
+    <%= form_tag admin_surveys_path, multipart: true do %>
 		  <% if  @survey_errors.present? %>
 				<div class="col-md-12 error-msg-tb">
 				  <table class="table table-bordered">
@@ -23,13 +25,23 @@
 			  </div>
 		  <% end %>
 		  <div class="row" %>
-		    <%= file_field_tag :file, class: "file-upload-field" %>
-		    <%= submit_tag "Import", class: "btn btn-primary file-submit" %>
+		    <%= file_field_tag :file, class: "file-upload-field" %><br /><br />
+		    <%= submit_tag "Import", class: "btn file-submit" %>
 			</div>
-		<% end %>
-	</div>	
+    <% end %>
+  </div>
+  <div class="tiles borderdevider">
+  	<%= link_to user_surveys_admin_surveys_path do %>
+	    <div class="circle"> 
+	  		<span class="glyphicon glyphicon-user iconglyphicon" aria-hidden="true"></span>
+			</div>
+	    <h3>User Surveys</h3><br>
+    <% end %>
+  </div>
+	<%= link_to email_notification_admin_surveys_path do %>
+    <div class="tiles">
+      <div class="circle"> <span class="glyphicon glyphicon-envelope iconglyphicon" aria-hidden="true"></span></div>
+   		<h3>Email Notification</h3>
+    </div>
+  <% end %>
 </div>
-<%= link_to "User Surveys", user_surveys_admin_surveys_path %><br>
-<%= link_to "Email Notification", email_notification_admin_surveys_path %>
-
-<!-- admin_surveys_path admin_dashboards_path -->

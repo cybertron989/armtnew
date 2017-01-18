@@ -1,5 +1,6 @@
-<div class="container mrtop20">
-  <div class="row usurvFilter">
+<div class="container">
+  <%= render "shared/heading" %>
+  <div class="row usurvFilter usurvFilter-Survey">
     <div class="col-md-3">
       <%= select_tag "survey_type", options_for_select(SurveyType.pluck(:name)), prompt: "Select Survey Type", class: "form-control", id: "surveyTypeSelect" %>
     </div>
@@ -9,24 +10,27 @@
     <div class="col-md-3">
       <%= select_tag "response", options_for_select([["Yes", true], ["No", false]]), prompt: "Select Response", class: "form-control", id: "surveyRspSelect" %>
     </div>
-    <div class="col-md-1">
+    <div class="col-md-3">
       <%= submit_tag "Submit", id: "btnSurveyFilter", class: "btn btn-primary" %>
-    </div>
-    <div class="col-md-2">
       <%= submit_tag "Export Excel", id: "btnSvyExportXl", class: "btn btn-primary" %>
     </div>
   </div>
-  <table id="userSurveysDatatable" class="display" cellspacing="0" width="100%", data-source="<%= user_surveys_admin_surveys_url(format: "json", area: params[:area]) %>" >
-      <thead>
-          <tr>
-            <% UserSurvey::TableColumnShow.each do |c_name| %>
-              <th><%= c_name %></th>
-            <% end %>
-          </tr>
-      </thead>
-      <tbody>
-                  
-      </tbody>
-  </table>
-
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box-container box-container-Survey">
+        <table id="userSurveysDatatable" class="display" cellspacing="0" width="100%", data-source="<%= user_surveys_admin_surveys_url(format: "json", area: params[:area]) %>" >
+            <thead>
+                <tr>
+                  <% UserSurvey::TableColumnShow.each do |c_name| %>
+                    <th><%= c_name %></th>
+                  <% end %>
+                </tr>
+            </thead>
+            <tbody>
+                        
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </div>

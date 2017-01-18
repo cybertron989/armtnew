@@ -1,4 +1,5 @@
 <div class="assessment-container container">
+  <%= render "shared/heading" %>
 	<div class="row">
 		<div class="col-md-12 form-box">
 		  <% if @surveys.present? %>
@@ -10,8 +11,7 @@
 						<fieldset>
 							<div class="form-top">
 								<div class="form-top-left">
-									<h3><span><i class="fa fa-calendar-check-o" aria-hidden="true"></i></span><%= survey_area %></h3>
-									<!-- <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit	</p> -->
+									<h3><span class="glyphicon glyphicon-check"></span><%= survey_area %></h3>
 								</div>
 							</div>
 							<div class="form-bottom">
@@ -47,7 +47,7 @@
 								</div>
 								<div>
 									<% if @surveys.count != inc %>
-									  <button type="button" class="btn btn-next" disabled>Next</button>
+									  <button type="button" class="btn btn-next " disabled>Next</button>
 									<% else %>
 									  <% if @surveys.count > 1 %>
 										  <button type="button" class="btn btn-previous">Previous</button>

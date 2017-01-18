@@ -8,7 +8,7 @@ class UserSurveysDatatable
   def as_json(options = {})
     {
       sEcho: params[:sEcho].to_i,
-      iTotalRecords: UserSurvey.count,
+      iTotalRecords: area_user_surveys.count,
       iTotalDisplayRecords: user_surveys.total_entries,
       aaData: data
     }
@@ -38,8 +38,12 @@ private
     @user_surveys ||= fetch_user_surveys
   end
 
+  def area_user_surveys
+    UserSurvey.where(area: params[:area]||"Customer ODS")
+  end
+
   def fetch_user_surveys
-    user_surveys = UserSurvey.where(area: params[:area]||"Customer ODS").order("#{sort_column} #{sort_direction}")
+    user_surveys = area_user_surveys.order("#{sort_column} #{sort_direction}")
     user_surveys = user_surveys.page(page).per_page(per_page) if params[:iDisplayLength] != 'All'
     if params[:sSearch_1].present? || params[:sSearch_3].present? || params[:sSearch_4].present? 
       user_surveys = user_surveys.survey_type_filter(params[:sSearch_1]).environment_filter(params[:sSearch_3]).survey_response_filter(params[:sSearch_4])

@@ -1,41 +1,60 @@
 <div class="container">
-	<div >
-		<div class="col-md-9">
-			<%= form_tag set_email_notifications_admin_surveys_path, role: "form", class: "form-horizontal", id: "reminder-form" do %>
-			  <div class="form-group">
-			    <label class="control-label col-sm-2" for="email">Subject:</label>
-			    <div class="col-sm-10">
-			      <%= text_field_tag "subject", "", class: "form-control", placeholder: "Subject" %>
-			    </div>
-			  </div>
-			  <div class="form-group">
-			    <label class="control-label col-sm-2" for="pwd">Body:</label>
-			    <div class="col-sm-10"> 
+  <%= render "shared/heading" %>
+  <div class="row">
+            <div class="col-md-offset-1 col-md-10">
+                <div class="box-container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-top">
+                                <div class="form-top-left">
+                                    <h3><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>Email Notification</h3>                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="form-container">
+                              <%= form_tag set_email_notifications_admin_surveys_path, role: "form", class: "form-horizontal", id: "reminder-form" do %>
+															  <div class="form-group">
+															    <label class="control-label col-sm-2" for="email">Subject:</label>
+															    <div class="col-sm-10">
+															      <%= text_field_tag "subject", "", class: "form-control", placeholder: "Subject" %>
+															    </div>
+															  </div>
+															  <div class="form-group">
+															    <label class="control-label col-sm-2" for="pwd">Body:</label>
+															    <div class="col-sm-10"> 
 
-			      <%= text_area_tag "body", "", class: "form-control", rows: 8 %>
-			    </div>
-			  </div>
-			  <div class="form-group" id="reminderbox">
-			    <label class="control-label col-sm-2" for="pwd">Reminder:</label>
-			    <div class="col-sm-10"> 
-			      <!-- <div class="col-sm-8 "> -->
-			        <div >
-				        <span class="col-sm-6 reminderFirst">
-				        <%= text_field_tag "reminders[]", "", class: "form-control mar5 datepick", placeholder: "MM/DD/YYYY", readonly: true %>
-				        </span>
-			        <%= link_to "Add New", "javascript:void(0)", id: "addNewReminder", class: "col-sm-2"%>
-			        </div>
-			        <div id="newReminderDiv" class="col-sm-8"></div>
-			      <!-- </div> -->
-			    </div>
-			  </div>	 
-			  <div class="form-group"> 
-			    <div class="col-sm-offset-2 col-sm-10">
-			      <button type="submit" class="btn btn-default btn-reminder">Submit</button>
-			    </div>
-			  </div>
-	    <% end %>
-		</div>
-	</div>
+															      <%= text_area_tag "body", "", class: "form-control", rows: 8 %>
+															    </div>
+															  </div>
+															  <div class="form-group" id="reminderbox">
+															    <label class="control-label col-sm-2" for="pwd">Reminder:</label>
+															    <div class="col-sm-10"> 
+															      <!-- <div class="col-sm-8 "> -->
+															        <div >
+																        <span class="col-sm-6 reminderFirst">
+																        <%= text_field_tag "reminders[]", "", class: "form-control mar5 datepick", placeholder: "MM/DD/YYYY", readonly: true %>
+																        </span>
+																        <%= link_to  "javascript:void(0)", id: "addNewReminder", class: "col-sm-3" do %>
+																          <span class="glyphicon glyphicon-plus"></span>Add New
+																        <% end %>
+															        </div>
+															        <div id="newReminderDiv" class="col-sm-12"></div>
+															      <!-- </div> -->
+															    </div>
+															  </div>	 
+															  <div class="form-group"> 
+														      <button type="submit" class="btn btn-default btn-reminder">Submit</button>
+															  </div>
+													    <% end %>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
 </div>
 
