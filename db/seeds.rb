@@ -27,32 +27,27 @@ SURVEY_AREAS.each do |sa|
 	survey_area.save!
 end
 
- 
+dous = [{name: "Customer-DOU-Activity_management_tool-001", team_name: "Activity", survey_area: "Customer ODS"},
+{name: "Customer-DOU-ACTODS-002", team_name: "Activity", survey_area: "Customer ODS"},
+{name: "Customer-DOU-ADM-002", team_name: "Alignment", survey_area: "Customer ODS"},
+{name: "Customer-DOU-Analytics Solution-001", team_name: "Analytics Solution", survey_area: "Customer ODS"},
+{name: "Customer-DOU-BU_IT_Architecture-001", team_name: "BU IT", survey_area: "Customer ODS"},
+{name: "Material-DOU-Activity Management Tool(AMT)-001", team_name: "Activity", survey_area: "Activity ODS"},
+{name: "Material-DOU-ADM-001", team_name: "Alignment", survey_area: "Activity ODS"},
+{name: "Material-DOU-Eureka-001", team_name: "Eureka", survey_area: "Activity ODS"},
+{name: "Material-DOU-Integrated Data Platform (IDP)-001", team_name: "IDP", survey_area: "Activity ODS"},
+{name: "Material-DOU-Polaris_ASRMS-001", team_name: "Polaris", survey_area: "Activity ODS"},
+{name: "Alignment-DOU-DataSteward_Access-001", team_name: "Data Steward", survey_area: "Alignment ODS" },
+{name: "Alignment-DOU-POLARIS-002", team_name: "Polaris", survey_area: "Alignment ODS" },
+{name: "Alignment-DOU-GAIP-002", team_name: "Global KAM", survey_area: "Alignment ODS" },
+{name: "Alignment-DOU-Japan_Harmony_Project-001", team_name: "Japan Harmony", survey_area: "Alignment ODS" },
+{name: "Alignment-DOU-EUREKA_V7-001", team_name: "EUREKA COE TEAM", survey_area: "Alignment ODS" },
+{name: "Alignment-DOU-TPO-001", team_name: "TPO", survey_area: "Alignment ODS" },
+{name: "Alignment-DOU-TLAC-001", team_name: "TLAC", survey_area: "Alignment ODS" },
+{name: "Alignment-DOU-Future_Foundation-001", team_name: "Future Foundation", survey_area: "Alignment ODS" },
+{name: "Alignment-DOU-Activity-002", team_name: "Activity", survey_area: "Alignment ODS" },
+{name: "Alignment-DOU-Customer-001", team_name: "Customer", survey_area: "Alignment ODS" }]
 
-# dous = [{name: "TEst12", team_name: "afsdfbv", survey_area: "Alignment ODS"},
-#  	{name: "TEst", team_name: "abv", survey_area: "Alignment ODS"},
-#  	{name: "TEs2t", team_name: "a234bv", survey_area: "Alignment ODS"},
-#  	{name: "fsdfewreEst", team_name: "ab123v", survey_area: "Alignment ODS"},
-#  	{name: "awerEst", team_name: "421abv", survey_area: "Alignment ODS"},
-#  	{name: "aEst", team_name: "234abv", survey_area: "Alignment ODS"},
-#  	{name: "2214sEsft", team_name: "asdaabv", survey_area: "Alignment ODS"},
-#  	{name: "dssadEst", team_name: "vxzcvxabv", survey_area: "Alignment ODS"},
-#  	{name: "adsEst", team_name: "zxvcxcvxabv", survey_area: "Alignment ODS"},
-#  	{name: "vbEst", team_name: "xr4tabv", survey_area: "Alignment ODS"},
-#  	{name: "Tvst", team_name: "s fsfabv", survey_area: "Alignment ODS"},
-#  	{name: "TEst12", team_name: "afsdfbv", survey_area: "Customer ODS"},
-#  	{name: "TEst", team_name: "abv", survey_area: "Customer ODS"},
-#  	{name: "TEs2t", team_name: "a234bv", survey_area: "Customer ODS"},
-#  	{name: "fsdfewreEst", team_name: "ab123v", survey_area: "Customer ODS"},
-#  	{name: "awerEst", team_name: "421abv", survey_area: "Customer ODS"},
-#  	{name: "aEst", team_name: "234abv", survey_area: "Customer ODS"},
-#  	{name: "2214sEsft", team_name: "asdaabv", survey_area: "Customer ODS"},
-#  	{name: "dssadEst", team_name: "vxzcvxabv", survey_area: "Customer ODS"},
-#  	{name: "adsEst", team_name: "zxvcxcvxabv", survey_area: "Customer ODS"},
-#  	{name: "vbEst", team_name: "xr4tabv", survey_area: "Customer ODS"},
-#  	{name: "Tvst", team_name: "s fsfabv", survey_area: "Customer ODS"},
-#   ]
-
-# dous.each do |dou|
-# 	Dou.create(dou)
-# end
+dous.each do |dou|
+	Dou.create(dou)
+end
