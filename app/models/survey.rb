@@ -2,7 +2,7 @@ class Survey < ApplicationRecord
   
   enum status: [ :active, :completed, :archived, :deleted ]
   validates :user_id, :survey_type, :area, :schema_area, presence: true
-  validates_uniqueness_of :user_id, scope: [:user_id, :survey_type, :area, :schema_area, :environment, :status]
+  validates_uniqueness_of :user_id, scope: [:user_id, :survey_type, :area, :schema_area, :environment, :status], on: :create
   validates :survey_type, inclusion: { in: SurveyType.pluck(:name),   message: "%{value} is not a valid type" }
   validates :area, inclusion: { in: SurveyArea.pluck(:name),   message: "%{value} is not a valid area" }
 
