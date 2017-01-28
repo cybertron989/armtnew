@@ -1,5 +1,6 @@
 $(document).on('turbolinks:load', function() {
 // setTimeout(function() {
+  removeReminderInput();
 	$('#userSurveysDatatable').removeClass( 'display' ).addClass('table table-striped table-bordered');
   oTable = $('#userSurveysDatatable').DataTable({
                     // dom: 'Bfrtip',
@@ -35,7 +36,8 @@ $(document).on('turbolinks:load', function() {
   $(".datepick").datepicker({startDate: new Date});
 
   $('#addNewReminder').on('click', function() {
-    var cloneInp = $(".reminderFirst").html();
+    // var cloneInp = $(".reminderFirst").html();
+    var cloneInp = '<input type="text" name="reminders[]" id="reminders_" class="form-control mar5 datepick" placeholder="MM/DD/YYYY" readonly="readonly">'
     cloneInp = "<div class='col-sm-12'><span class='col-sm-6'>" + cloneInp + '</span><a class="col-sm-3 removeNewReminder" href="javascript:void(0)"><span class="glyphicon glyphicon-trash"></span>Remove</a></div>'
     // cloneInp = '<span>'+cloneInp + '<a class="col-sm-2 removeNewReminder" href="javascript:void(0)">Remove</a>'+'</span>'
     $(".datepick").datepicker('destroy');

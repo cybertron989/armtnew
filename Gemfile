@@ -40,11 +40,12 @@ gem 'ruby-saml', '~> 1.0.0'
 gem 'roo'
 gem 'will_paginate', '~> 3.1.0'
 gem 'jquery-datatables-rails', github: 'rweng/jquery-datatables-rails'
-gem 'sidekiq', '~> 4.2', '>= 4.2.8'
+# gem 'sidekiq', '~> 4.2', '>= 4.2.8'
 gem 'bootstrap-datepicker-rails', '~> 1.6', '>= 1.6.4.1'
 gem 'axlsx'
 gem "axlsx_rails"
 gem 'net-ldap'
+gem 'delayed_job_active_record'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

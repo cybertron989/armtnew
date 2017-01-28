@@ -22,12 +22,22 @@ class Admin::SurveysController < AdminController
 	end
 
 	def email_notification
-		
+		delayed_jobs = Delayed::Job.all
+		@email_notification = {}
+		if delayed_jobs.present?
+	    parse_dj = YAML.parse(delayed_jobs.first.handler)
+	    subject = parse_dj.children.last.children.last.children.first.value
+	    body = parse_dj.children.last.children.last.children.last.value
+	    reminders = delayed_jobs.pluck(:run_at)
+	    @email_notification = {subject: subject, body: body, reminders: reminders}
+	  end
 	end
 
 	def set_email_notifications
+    Delayed::Job.destroy_all
 		params[:reminders] && params[:reminders].each_with_index do |reminder, index|
-		  duration = Time.strptime(reminder, "%m/%d/%Y") - Time.now
+		  # duration = Time.strptime(reminder, "%m/%d/%Y") - Time.now
+		  duration = Time.strptime(reminder, "%m/%d/%Y")
       subject = case index
 					      	when 0
 					      		params[:subject]
@@ -36,7 +46,7 @@ class Admin::SurveysController < AdminController
 					      	else
 					      		"Re: #{params[:subject]}"
 					      end
-
+      SurveyNotificationWorker.delay(run_at: duration).perform_job(subject, params[:body])
       # SurveyNotificationWorker.perform_in(duration, subject, params[:body])
 	  end
     redirect_to email_notification_admin_surveys_path, :flash => { :success => I18n.t(:success_email_notification) }
