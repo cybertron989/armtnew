@@ -12,7 +12,7 @@ class SurveysController < ApplicationController
   			survey = Survey.find_by(id: id)
   			survey.status = :completed
         survey.survey_response = response
-        survey.dou = user_survey[:DOU] #if response == "true"      
+        survey.dou = user_survey[:DOU] if response == "true"      
   			survey.save
       end
     end

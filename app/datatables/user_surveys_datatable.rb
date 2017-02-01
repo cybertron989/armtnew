@@ -39,7 +39,7 @@ private
   end
 
   def area_user_surveys
-    UserSurvey.where(area: params[:area]||"Customer ODS")
+    UserSurvey.where(area: params[:area]||"Alignment ODS")
   end
 
   def fetch_user_surveys
