@@ -1,0 +1,46 @@
+<div class="container">
+  <%= render "shared/heading" %>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="box-container box-container-Survey">
+        <%= form_tag save_data_admin_surveys_path, multipart: true  do %>
+        	<% if  $file_data.present? %>
+				  <div class="row">
+				    <div class="col-md-12">
+				      <div class="box-container box-container-Survey">
+				  <table class="table table-bordered" id="showSurveysDatatable">
+					  <thead>
+				      <tr>
+				      		<th></th>
+							  <th>UserId</th>
+							  <th>Type</th>
+							  <th>Area</th>
+							  <th>Schema</th>
+							  <th>Environment</th>
+							</tr>
+						</thead>
+						<tbody>
+						<% i=0 %>
+					  <% $file_data.each do |data|%>
+					    <tr>
+					    	<td><%= check_box_tag("value_#{i}", i) %></td>
+						    <td><strong><%= data[:user_id]%></strong></td>
+						    <td><strong><%= data[:survey_type]%></strong></td>
+						    <td><strong><%= data[:area]%></strong></td>
+						    <td><strong><%= data[:schema_area]%></strong></td>
+						    <td><strong><%= data[:environment]%></strong></td>
+						  </tr>
+						  <% i=i+1%>
+						<% end %>
+						</tbody>
+				  </table>
+				  </div>
+		 		</div>
+			  </div>
+			  <%= submit_tag "Import", class: "btn file-submit", value: "Import" %>
+		  <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,14 +1,21 @@
 class Admin::SurveysController < AdminController
 
-
+$file_data=[]
 	def create
 		if params[:file].present? && File.extname(params[:file].path) == ".xlsx"
-			@survey_errors, msg = Survey.import(params[:file])
-			if @survey_errors.blank?		  	
-		    redirect_to admin_dashboards_path, :flash => { :success => I18n.t(:success_upload_file) }
-		  else
-		  	render "admin/dashboards/index"
-		  end
+			if params[:commit].present? && params[:commit]=="Import"
+				@survey_errors, msg = Survey.import(params[:file])
+				if @survey_errors.blank?		  	
+		    		redirect_to admin_dashboards_path, :flash => { :success => I18n.t(:success_upload_file) }
+		  		else
+		  			render "admin/dashboards/index"
+		  		end
+		  	elsif params[:commit].present? && params[:commit]=="CheckData"
+		  			$file_data = Survey.showData(params[:file])
+		    		redirect_to show_data_admin_surveys_path
+		  	else
+		  		redirect_to admin_dashboards_path, :flash => { :error => I18n.t(:invalid_file_upload) }
+		  	end
 		else
 			redirect_to admin_dashboards_path, :flash => { :error => I18n.t(:invalid_file_upload) }
 		end
@@ -19,6 +26,46 @@ class Admin::SurveysController < AdminController
 	    format.html
 	    format.json { render json: UserSurveysDatatable.new(view_context) }
 	  end
+	end
+
+	def show_data
+	end
+
+	def save_data
+		surveys = []
+		@survey_errors = []
+		i=0;
+		if  $file_data.present?
+			$file_data.each do |data|
+				puts "outside if #{params["value_#{i}"]}"
+				if(params["value_#{i}"].present? && params["value_#{i}"]==i.to_s)
+					puts " inside if value_#{i}: #{params["value_#{i}"]}"
+					survey = Survey.new(user_id: data[:user_id], 
+	     	                    survey_type: data[:survey_type],
+	     	                    area: data[:area], 
+	     	                    schema_area: data[:schema_area].try(:upcase), 
+	     	                    environment: data[:environment].try(:capitalize), 
+	     	                    status:  Survey.statuses[:active]
+	     	                  )
+	      			surveys << survey
+	      			@survey_errors << {row: i, error_message: survey.errors.full_messages} unless survey.valid?
+				end
+				i=i+1
+			end
+		end
+		if @survey_errors.blank? 
+		 	if surveys.any?
+				surveys.each do |survey|
+	  				survey.save
+	  			end	
+	  			redirect_to admin_dashboards_path, :flash => { :success => I18n.t(:success_upload_file) }
+			else
+				redirect_to show_data_admin_surveys_path, :flash => { :error => I18n.t(:no_data_selected) }	
+			end
+		else
+			render "admin/dashboards/index"
+		end
+
 	end
 
 	def email_notification

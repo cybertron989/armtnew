@@ -13,6 +13,15 @@ $(document).on('turbolinks:load', function() {
                     "sAjaxSource": $('#userSurveysDatatable').data('source')
                   });
 
+    oTable = $('#showSurveysDatatable').DataTable({
+                    "lengthChange":   false,
+                    "sPaginationType": "full_numbers",
+                    "bJQueryUI": true,
+                    "bProcessing": true                    
+                  });
+
+  
+
   $('#btnSurveyFilter').on('click', function () {
     oTable.columns(1).search($('#surveyTypeSelect').val());
     oTable.columns(3).search($('#surveyEnvSelect').val());
