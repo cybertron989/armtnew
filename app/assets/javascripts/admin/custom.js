@@ -13,7 +13,7 @@ $(document).on('turbolinks:load', function() {
                     "sAjaxSource": $('#userSurveysDatatable').data('source')
                   });
 
-    oTable = $('#showSurveysDatatable').DataTable({
+    $('#showSurveysDatatable').DataTable({
                     "lengthChange":   false,
                     "sPaginationType": "full_numbers",
                     "bJQueryUI": true,

@@ -3,19 +3,8 @@ class Admin::SurveysController < AdminController
 $file_data=[]
 	def create
 		if params[:file].present? && File.extname(params[:file].path) == ".xlsx"
-			if params[:commit].present? && params[:commit]=="Import"
-				@survey_errors, msg = Survey.import(params[:file])
-				if @survey_errors.blank?		  	
-		    		redirect_to admin_dashboards_path, :flash => { :success => I18n.t(:success_upload_file) }
-		  		else
-		  			render "admin/dashboards/index"
-		  		end
-		  	elsif params[:commit].present? && params[:commit]=="CheckData"
 		  			$file_data = Survey.showData(params[:file])
 		    		redirect_to show_data_admin_surveys_path
-		  	else
-		  		redirect_to admin_dashboards_path, :flash => { :error => I18n.t(:invalid_file_upload) }
-		  	end
 		else
 			redirect_to admin_dashboards_path, :flash => { :error => I18n.t(:invalid_file_upload) }
 		end
