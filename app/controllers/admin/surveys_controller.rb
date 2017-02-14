@@ -52,7 +52,7 @@ $file_data=[]
 				redirect_to show_data_admin_surveys_path, :flash => { :error => I18n.t(:no_data_selected) }	
 			end
 		else
-			render "admin/dashboards/index"
+			render "admin/surveys/show_data"
 		end
 
 	end

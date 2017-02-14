@@ -3,6 +3,26 @@
   <div class="row">
     <div class="col-md-12">
       <div class="box-container box-container-Survey">
+      <% if  @survey_errors.present? %>
+				<div class="col-md-12 error-msg-tb">
+				  <table class="table table-bordered">
+					  <thead>
+				      <tr>
+							  <th>Row</th>
+							  <th>Message</th>
+							</tr>
+						</thead>
+						<tbody>
+					  <% @survey_errors.each do |errors|%>
+					    <tr>
+						    <td><strong><%= errors[:row]%></strong></td>
+						    <td><span>	<%= errors[:error_message].join("<br/>").html_safe%> </span></td>
+						  </tr>
+						<% end %>
+						</tbody>
+				  </table>
+			  </div>
+		  <% end %>
         <%= form_tag save_data_admin_surveys_path, multipart: true  do %>
         	<% if  $file_data.present? %>
 				  <div class="row">
@@ -23,7 +43,7 @@
 						<% i=0 %>
 					  <% $file_data.each do |data|%>
 					    <tr>
-					    	<td><%= check_box_tag("value_#{i}", i) %></td>
+					    	<td><%= check_box_tag("value_#{i}", i,true) %></td>
 						    <td><strong><%= data[:user_id]%></strong></td>
 						    <td><strong><%= data[:survey_type]%></strong></td>
 						    <td><strong><%= data[:area]%></strong></td>
