@@ -40,29 +40,6 @@ class Survey < ApplicationRecord
 	  return survey_errors, "Invalid File"
 	end
 
-	def self.showData file
-		puts "inside show_data #{file.path}"
-		spreadsheet = Roo::Excelx.new(file.path)
-		surveys = []
-		survey_errors = []
-	  (2..spreadsheet.last_row).each do |i|
-	  	row= spreadsheet.row(i)
-	    if row[0].present? && row[1].present?
-	      survey = Survey.new(user_id: row[0], 
-	     	                    survey_type: row[1],
-	     	                    area: row[2], 
-	     	                    schema_area: row[3].try(:upcase), 
-	     	                    environment: row[4].try(:capitalize), 
-	     	                    status:  Survey.statuses[:active]
-	     	                  )
-	      surveys << survey
-	      survey_errors << {row: i, error_message: survey.errors.full_messages} unless survey.valid?
-	      puts "survey_errors: #{survey_errors}"
-	    end
-	  end
-	  return surveys
-	end
-
 	def self.records id
 		surveys = Survey.active.where(user_id: id)
 		survey_hsh = {}
