@@ -35,7 +35,8 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'twitter-bootstrap-rails', '~> 3.2', '>= 3.2.2'
-gem "less-rails"
+# gem 'bootstrap'
+# gem "less-rails"
 gem 'ruby-saml', '~> 1.0.0'
 gem 'roo'
 gem 'will_paginate', '~> 3.1.0'
