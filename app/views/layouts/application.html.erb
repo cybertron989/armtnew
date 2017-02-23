@@ -10,13 +10,17 @@
     <%#= javascript_include_tag '//cdn.datatables.net/buttons/1.2.4/js/buttons.print.min.js' %>
     <%= javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/jszip/2.5.0/jszip.min.js' %>
     <%= javascript_include_tag '//cdn.datatables.net/buttons/1.2.4/js/buttons.html5.min.js' %>
+    <%= javascript_include_tag 'jquery.scrollex.min.js' %>
+    <%= javascript_include_tag 'jquery.scrolly.min.js' %>
+    <%= javascript_include_tag 'skel.min.js' %>
+    <%= javascript_include_tag 'jquery.scrolly.min.js' %>
+    <%= javascript_include_tag 'jquery.scrolly.min.js' %>
   </head>
 
   <body>
-    <!-- <%= render "shared/header" %> 
-    <%= flash_messages %>
-    <%= yield %> -->
+    
+    <%= yield %> 
 
-  <div id="loadModal"></div>
+ <!-- <div id="loadModal"></div> -->
   </body>
 </html>

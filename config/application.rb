@@ -18,7 +18,6 @@ module Armt
 		#   arguments: '-i'
 		# }
 		config.action_mailer.perform_deliveries = true
-		config.assets.initialize_on_precompile = false
 		config.action_mailer.raise_delivery_errors = true
 		config.action_mailer.default_options = {from: 'no-reply@example.com'}
 
