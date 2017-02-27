@@ -15,5 +15,5 @@
  *= require_tree .
  *= require_self
  *= require main.css
- *= require home.css.erb
+ *
  */
