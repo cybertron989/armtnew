@@ -3778,3 +3778,12 @@ body.is-loading #sidebar nav ul li {
         background-attachment: scroll;
     }
 }
+
+.importsurvey {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
